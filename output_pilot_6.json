@@ -1,0 +1,98 @@
+{
+  "format": "in-and-out-output-pilot",
+  "version": 1,
+  "videoId": "8-Li_sFNc4Q",
+  "sourceNote": "영상 주제 및 도입부 표현을 참고한 연습용 재구성 문장. 실제 자막과 1:1 대응하지 않음.",
+  "items": [
+    {
+      "id": 1,
+      "korean": "토요일 밤에 프레젠테이션을 하고 싶지는 않았어요.",
+      "modelAnswer": "I didn’t want to give a presentation on a Saturday night.",
+      "units": [
+        {
+          "korean": "토요일 밤에",
+          "modelAnswer": "on a Saturday night"
+        },
+        {
+          "korean": "프레젠테이션을 하고 싶지는 않았어요",
+          "modelAnswer": "I didn’t want to give a presentation"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "korean": "그래서 적어도 맥주 한 잔은 마실 수 있겠다고 생각했어요.",
+      "modelAnswer": "So I thought I could at least have a beer.",
+      "units": [
+        {
+          "korean": "그래서 나는 생각했어요",
+          "modelAnswer": "So I thought"
+        },
+        {
+          "korean": "적어도 맥주 한 잔은 마실 수 있겠다고",
+          "modelAnswer": "I could at least have a beer"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "korean": "원래는 이 이야기를 할 생각이 없었어요.",
+      "modelAnswer": "I wasn’t originally planning to talk about this.",
+      "units": [
+        {
+          "korean": "원래는",
+          "modelAnswer": "originally"
+        },
+        {
+          "korean": "이 이야기를 할 생각이 없었어요",
+          "modelAnswer": "I wasn’t planning to talk about this"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "korean": "저는 서른 살에 은퇴했어요.",
+      "modelAnswer": "I retired at thirty.",
+      "units": [
+        {
+          "korean": "저는 은퇴했어요",
+          "modelAnswer": "I retired"
+        },
+        {
+          "korean": "서른 살에",
+          "modelAnswer": "at thirty"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "korean": "일을 그만둔다고 해서 아무것도 하지 않는 건 아니에요.",
+      "modelAnswer": "Quitting your job doesn’t mean doing nothing.",
+      "units": [
+        {
+          "korean": "일을 그만두는 것은",
+          "modelAnswer": "Quitting your job"
+        },
+        {
+          "korean": "아무것도 하지 않는다는 뜻은 아니에요",
+          "modelAnswer": "doesn’t mean doing nothing"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "korean": "돈 때문에 일할 필요가 없다면 선택의 자유가 더 커져요.",
+      "modelAnswer": "If you don’t have to work for money, you have more freedom to choose.",
+      "units": [
+        {
+          "korean": "돈 때문에 일할 필요가 없다면",
+          "modelAnswer": "If you don’t have to work for money"
+        },
+        {
+          "korean": "선택의 자유가 더 커져요",
+          "modelAnswer": "you have more freedom to choose"
+        }
+      ]
+    }
+  ]
+}
