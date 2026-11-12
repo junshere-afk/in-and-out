@@ -225,6 +225,8 @@ render();switchView(localStorage.getItem(STORE_VIEW)==='output'?'output':'input'
   $('mic').addEventListener('click',e=>{if(mode!=='speaking')return;e.preventDefault();e.stopImmediatePropagation();if(recognizing){acceptRecognition=false;recognition.stop();return}recKey=key();acceptRecognition=true;$('answer').value='';saveAnswer();try{recognition.start()}catch(err){acceptRecognition=false;$('micStatus').textContent=err.message}},true);
   $('stopMic').addEventListener('click',()=>{acceptRecognition=false},true);
  }
+ /* A focused mic button normally treats Space as a click. Intercept it before button defaults or document shortcuts. */
+ window.addEventListener('keydown',e=>{const editable=['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);if(!editable&&!e.ctrlKey&&!e.altKey&&!e.metaKey&&e.code==='Space'){e.preventDefault();e.stopImmediatePropagation();play()}},true);
  update();
 })();
 </script><script src="https://www.youtube.com/iframe_api"></script></body></html>
