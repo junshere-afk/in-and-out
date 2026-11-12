@@ -216,8 +216,15 @@ render();switchView(localStorage.getItem(STORE_VIEW)==='output'?'output':'input'
  function completeSegment(){let completed=extra.completed[video()]||(extra.completed[video()]={});if(!completed[segment()]){completed[segment()]={day:today(),at:Date.now()};persist()}}
  $('clear').addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();$('answer').value='';saveAnswer();$('micStatus').textContent='현재 구간 입력을 지웠어요.'},true);
  $('next2').addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();saveAnswer();completeSegment();if(end<data.chunks.length-1){if(mode!=='typing')setMode('typing');reveal=false;setRange(end+1,defaultEnd(end+1),false);$('answer').focus()}},true);
- let recBase='',recKey='',finals=[];
- if(recognition){recognition.continuous=true;recognition.onresult=e=>{if(recKey!==key()||mode!=='speaking')return;let interim='';for(let i=e.resultIndex;i<e.results.length;i++){const text=e.results[i][0].transcript.trim();if(!text)continue;if(e.results[i].isFinal){if(!finals.includes(text))finals.push(text)}else interim+=(interim?' ':'')+text}$('answer').value=[recBase,...finals,interim].filter(Boolean).join(' ').replace(/\s+/g,' ').trim();saveAnswer()};$('mic').addEventListener('click',e=>{if(mode!=='speaking')return;e.preventDefault();e.stopImmediatePropagation();if(recognizing){recognition.stop();return}recBase=$('answer').value.trim();recKey=key();finals=[];try{recognition.start()}catch(err){$('micStatus').textContent=err.message}},true)}
+ let recKey='',acceptRecognition=false;
+ if(recognition){
+  /* One recording owns one replacement value. continuous stays off to preserve the original single-take behavior. */
+  recognition.continuous=false;
+  recognition.onresult=e=>{if(!acceptRecognition||recKey!==key()||mode!=='speaking')return;let transcript='';for(let i=0;i<e.results.length;i++)transcript+=e.results[i][0].transcript;$('answer').value=transcript.trim();saveAnswer()};
+  const originalEnd=recognition.onend;recognition.onend=e=>{acceptRecognition=false;originalEnd?.call(recognition,e)};
+  $('mic').addEventListener('click',e=>{if(mode!=='speaking')return;e.preventDefault();e.stopImmediatePropagation();if(recognizing){acceptRecognition=false;recognition.stop();return}recKey=key();acceptRecognition=true;$('answer').value='';saveAnswer();try{recognition.start()}catch(err){acceptRecognition=false;$('micStatus').textContent=err.message}},true);
+  $('stopMic').addEventListener('click',()=>{acceptRecognition=false},true);
+ }
  document.addEventListener('keydown',e=>{const editable=['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName);if(editable||e.ctrlKey||e.altKey||e.metaKey)return;if(e.code==='Space'&&mode==='speaking'){e.preventDefault();e.stopImmediatePropagation();if(recognizing){recognition.stop();play()}else{if(ready&&player.getPlayerState()===YT.PlayerState.PLAYING){pausedAt=player.getCurrentTime();player.pauseVideo();playingSegment=false;$('play').textContent='▶ 이어 듣기'}$('mic').click()}}},true);
  update();
 })();
